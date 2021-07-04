@@ -1,0 +1,4 @@
+	====== Seopage1 & my work =======
+________________________________________________
+
+This functions use in WordPress functions.php for Child Theme
