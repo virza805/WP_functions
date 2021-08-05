@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnClick</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- https://codepen.io/sazzad/pen/pqlgy -->
+<style>
+.dropdown-menu{
+  display: none;
+}
+.menu {
+    position: relative;
+    z-index: 1;
+}
+ul.nav {
+    position: absolute;
+    right: 0;
+    background: #323232;
+    width: 200px;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li.menu_sub {
+    position: relative;
+    z-index: 2;
+}
+/* li.menu_sub:before {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    content: "\f104";
+    width: 100px;
+    height: 100px;
+    font-family: 'FontAwesome';
+    color: #a9a9a9ed;
+    font-size: 22px;
+    line-height: 42px;
+} */
+ul.nav li > a {
+    color: #a9a9a9;
+    font-size: 20px;
+}
+ul.nav li ul {
+    background: #767676;
+}
+ul.nav li ul li a {
+    color: #f0f0f0;
+}
+ul.nav li ul {
+    position: absolute;
+    left: -160px;
+    width: 160px;
+    top: 0;
+}
+ul.nav li {
+    margin: 0;
+    padding: 10px 25px;
+    border-bottom: 2px solid #ff000000;
+    transition: .7s;
+}
+a {
+    text-decoration: none;
+}
+ul.nav > li:hover {
+    background: #0a0a0a;
+    border-bottom: 2px solid #008feb;
+}
+ul.nav > li ul > li:hover {
+    border-color: white;
+    background: #636161;
+}
+ul.nav li ul > li {
+    transition: .7s;
+}
+
+</style>
+</head>
+<body>
+  <div class="menu">
+    <ul class="nav">
+        <li>
+          <a href="#">
+            No dropdown
+          </a>
+        </li>
+        <li class="menu_sub">
+          <a href="#" class="dropdown-toggle">
+            Dropdown 1 <i class="fa fa-angle-right"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#">
+                Drop Item 1
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Drop Item 2
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Drop Item 3
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            No dropdown
+          </a>
+        </li>
+        <li class="menu_sub">
+          <a href="javascript:void(0)" class="dropdown-toggle">
+            Dropdown 2 <span>▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#">
+                asdf
+              </a>
+            </li>
+          </ul>
+        </li>
+    </ul>
+  </div>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+    <script src="js.js"></script>
+    
+</body>
+</html>

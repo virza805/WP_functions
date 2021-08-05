@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiper Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+    <h1>Swiper Slider</h1>
+    <!-- Slider main container -->
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+  </div>
+
+
+    
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+//     const swiper = new Swiper('.swiper-container', {
+//   // Optional parameters
+// //   direction: 'vertical',
+// //   loop: true,
+
+//   // If we need pagination
+//   pagination: {
+//     el: '.swiper-pagination',
+//   },
+
+//   // Navigation arrows
+//   navigation: {
+//     nextEl: '.swiper-button-next',
+//     prevEl: '.swiper-button-prev',
+//   },
+
+//   // And if we need scrollbar
+// //   scrollbar: {
+// //     el: '.swiper-scrollbar',
+// //   },
+// });
+var titles = ['Slide 1', 'Slide 2', 'Slide 3', 'Slide 4']
+    var mySwiper = new Swiper ('.swiper-container', {
+        // If we need pagination
+        pagination: {
+        el: '.swiper-pagination',
+                clickable: true,
+            renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + (titles[index]) + '</span>';
+            },
+        },
+
+        // Navigation arrows
+        navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        },
+    })
+</script>
+</body>
+</html>
