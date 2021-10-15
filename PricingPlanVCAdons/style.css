@@ -1,0 +1,195 @@
+/* Base CSS s_1_9.html */
+.alignleft{
+    float:left;
+    margin-right:15px;
+}
+.alignright {
+    float: left;
+    margin-left: 15px;
+}
+.aligncenter {
+    display: block;
+    margin:0 auto 15px;
+}
+img{
+    max-width: 100%;
+    height:auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    margin:0 0 15px;
+    font-weight: 700;
+}
+html,
+body{
+    height: 100%;
+}
+a:hover{
+    text-decoration: none;
+}
+/* RRF 150 Section Video_6 # 19/8/2019 8:23am # End Video_6 */
+.v_6_margin{
+    margin: 50px 0;
+
+}
+.v_6_margin .section-title h2 span{
+    color: #05bd27;
+    font-weight: 700;
+}
+.single-pricing-box{
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+}
+.single-pricing-box:hover{
+    border:#2fa55e;
+    box-shadow: 0 0 50px #ccc;
+    color: #2fa55e;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+.single-pricing-box h3{
+   
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.pricing-icon{
+    font-size: 60px;
+    margin-bottom:20px;
+}
+.pricing-icon img{
+    max-width: 64px;
+    max-height: 64px;
+}
+#price{
+    text-transform: none;
+}
+.pricing-lists{
+    text-align: left;
+    margin-bottom: 23px;
+}
+.pricing-lists ul{
+    margin: 0;
+    padding: 0;
+    list-style:outside none none;
+    padding-left: 16px;
+    line-height: 25px;
+}
+.pricing-lists ul li:before{
+    font-family: fontAwesome;
+    content:"\f00c";
+    color:#05bd27;
+    padding-right: 11px;
+}
+.pricing-lists ul li.off:before{
+    content:"\f00d";
+    color: red;
+}
+.bordered-btn{
+    display: inline-block;
+    border:1px solid #05bd27;
+    padding: 10px 30px;
+    border-radius: 50px;
+    color: #333;
+    font-size: 18px;
+}
+.bordered-btn:hover{
+    display: inline-block;
+    border:1px solid #f55f08;;
+    padding: 10px 30px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 18px;
+    background: #05bd27;
+}
+.pricing-lists ul li{
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.pricing-lists ul li :hover{
+    padding-left: 5px;
+}
+.single-pricing-box:hover .pricing-icon img{
+    opacity: 0.7;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+}
+/* RRF 150 Section Video_6 # 19/8/2019 am # End Video_6 */
+/* RRF 150 Section Video_115 # 2/2/2020 5:21pm On*/
+.single-pricing-item{
+    box-shadow: 0 0 9px #ddd;
+    padding:30px;
+    border-top:3px solid #3bc695;
+    text-align: center;
+    transition: .3s;
+}
+p.pricing-price-text {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding-top: 25px;
+}
+.pricing-price {
+    background: #3bc695;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin: 30px auto;
+    color: #fff;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+}
+.pricing-price::after {
+    position: absolute;
+    left:-7%;
+    top:-7%;
+    height: 114%;
+    width: 114%;
+    border-radius: 50%;
+    content: "";
+    border:3px solid#3bc695;
+}
+.pricing-content{
+    font-size: 17px;
+    color: #646464;
+}
+.bordered-btn {
+    /* background: green; */
+    color: #3bc695;
+    font-size: 16px;
+    padding: 10px 30px;
+    border-radius: 40px;
+    border: 2px solid #3bc695;
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 15px;
+}
+.boxed-btn.bordered-btn{
+    color:#fff;
+    background-color: #3bc695;
+}
+.single-pricing-item:hover{
+    transform:scale(1.1);
+}
+/*Them disigns*/
+.single-pricing-item.theme-2{border-color: coral;}
+.theme-2 .pricing-price{background-color: #fc5f45;}
+.theme-2 .pricing-price::after {
+    border-color: #fc5f45;
+}
+.theme-2 .boxed-btn{background-color: #fc5f45;
+border-color: #fc5f45;}
+
+.single-pricing-item.theme-3{border-color: #9c50ff;}
+.theme-3 .pricing-price{background-color: #9c50ff;}
+.theme-3 .pricing-price::after {
+    border-color: #9c50ff;
+}
+.theme-3 .boxed-btn{background-color: #9c50ff;
+border-color: #9c50ff;}
+/* RRF 150 Section Video_115 # 2/2/2020 6:37pm End */
