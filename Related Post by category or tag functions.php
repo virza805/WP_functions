@@ -149,3 +149,130 @@ if ( $the_query->have_posts() ) : ?>
     // echo $category ;
 ?>
 <p><?php echo $project_cat_name ; ?>-<?php echo the_time(' M Y'); ?></p>
+
+<?php 
+
+// Show Category List Form Post 
+
+// //do_shortcode("[category_show]");//  Show Category List by Post //////////
+
+add_shortcode('category_show','category_show_fun');
+function category_show_fun(){
+	ob_start(); ?>
+
+<!-- Category:  -->
+<style>
+ul.cat-style {
+    list-style: none;
+}
+ul.cat-style li.categories {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+	flex-direction: column;
+}
+
+ul.cat-style li.categories ul {
+    list-style: none;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+	flex-wrap: wrap;
+}
+
+ul.cat-style li.categories ul li {
+    margin: 8px 3px;
+}
+
+ul.cat-style li.categories b {
+	margin: 15px 0;
+    font-size: 32px;
+    color: #148541;
+}
+ul.cat-style li.categories ul li a {
+    padding: 8px 16px;
+    background: #070707;
+    color: #fff;
+    transition: .4s;
+}
+ul.cat-style li.categories ul li:hover a{
+    background: #148541;
+}
+
+</style>
+<ul class="cat-style">
+    <?php wp_list_categories( array(
+        'orderby'    => 'name',
+		'order'   => 'ASC', // RAND
+		'exclude_tree' => 41,
+		'title_li' => '<b>' . __( 'Categories', 'textdomain' ) . '</b>',
+    ) ); ?> 
+</ul>
+	
+	<?php
+	return ob_get_clean();
+}
+?>
+
+
+<?php
+function discount_circle_remove_on_poen_menu_script() {
+?>
+<script type="text/javascript">
+ $('.fusion-icon-bars').on('click', function () {
+    $('.fusion-logo-link').toggleClass('open');
+});
+</script>
+<?php
+}
+add_action('wp_footer', 'discount_circle_remove_on_poen_menu_script');
+
+
+
+// Add toggle for FAQ's section
+
+add_action('wp_footer', 'get_footer_custom_script');
+  function get_footer_custom_script(){
+    ?>
+	<script>
+		(function ($) {
+			"use strict";
+			
+			jQuery(document).ready(function($){
+
+				$('.fusion-icon-bars').on('click', function () {
+					$('.fusion-logo-link').toggleClass('open');
+				});
+				
+			});
+
+			// this is off canvs menu on
+			$(".menu-btn").on('click', function(){
+            $(".offcanvs-menu").addClass("active");
+            $(".offcanvs-menu-overlay").addClass("active");
+			});
+			
+			$(".menu-close i.fa, .offcanvs-menu-overlay").on('click', function(){
+				$(".offcanvs-menu").removeClass("active");
+				$(".offcanvs-menu-overlay").removeClass("active");
+			});
+
+
+
+			jQuery(window).load(function(){
+
+			});
+
+		}(jQuery));
+    </script>
+<?php 
+  }
+// Use old editor for post
+add_filter('use_block_editor_for_post', '__return_false', 10)
+
+
+
+
