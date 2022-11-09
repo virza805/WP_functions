@@ -1,0 +1,275 @@
+/* Start Multi Step Form */
+
+.msf-step-input, .target-btn{
+    display: none;
+}
+.msf-step-input.active {
+    display: flex;
+}
+div#step3 {
+    flex-direction: column;
+}
+.target-btn.current {
+    display: block;
+}
+
+.full-width {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.msf-container {
+    margin: 0 auto;
+    /* background: #cecece; */
+}
+.msf-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.msf-single-step {
+    /* background: #bbb0b0; */
+    margin: 40px 0;
+}
+.msf-step-title h2 {
+    font-size: 70px;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.msf-step-title p {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: #6b6666;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7em;
+    margin-bottom: 15px;
+}
+.msf-step-input-field label {
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+.msf-step-title {
+    margin-bottom: 60px;
+}
+.msf-step-input-field input, .msf-step-input-field select {
+    width: 350px;
+    border-radius: 40px;
+    border:1px solid #efefef;
+    background: #efefef;
+	padding: 20px;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.input-c {
+    position: relative;
+    z-index: 1;
+}
+.input-c:before {
+    position: absolute;
+    left: 22px;
+    top: 9px;
+    width: 25px;
+    height: 24px;
+    content: "C";
+    z-index: 2;
+    font-size: 33px;
+}
+.input-c::after {
+    position: absolute;
+    left: 59px;
+    top: 41px;
+    width: 166px;
+    height: 1px;
+    content: "";
+    z-index: 2;
+    font-size: 33px;
+    background: #aba9a9;
+}
+.input-c input {
+    padding-left: 56px;
+}
+.msf-step-input {
+    padding: 10px 40px;
+}
+.msf-step-input-field.flex-column label {
+    margin-left: 18px;
+    margin-top: 16px;
+}
+.msf-step-input-field {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.msf-step-input-field label {
+    width: 200px;
+    display: inline-block;
+}
+
+.msf-single-step.msf-buttons {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.msf-buttons button {
+    padding: 12px 16px;
+    border: 1px solid #f27100;
+    margin: 0 10px;
+    border-radius: 5px;
+    color: #f27100;
+    background: none;
+    cursor: pointer;
+    width: 100px;
+    transition: 0.4s;
+}
+
+.msf-buttons button:hover {
+    background: #f27100;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.c-option {
+    background: #e0e0e0;
+    width: 350px;
+    font-size: 16px;
+    padding: 10px;
+    margin: 10px 20px;
+    border-radius: 30px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.c-option label {
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.c-option input {
+    cursor: pointer;
+}
+
+.msf-step-input-field.checkbox-describe {
+    flex-direction: column;
+    display: flex;
+}
+
+.msf-step-input-field.checkbox-describe label {
+    width: 100%;
+    margin-bottom: 14px;
+}
+.msf-step-input-checkbox h4 {
+    font-size: 23px;
+    margin: 0;
+}
+.msf-step-input-checkbox h4 + p {
+    font-size: 18px;
+    margin: 4px 0 20px 10px;
+    color: gray;
+}
+/*============= 
+For responsive CSS3 Start Now >---> 
+ ==============*/
+ /* Medium Layout 1280px */
+ @media only screen and (min-width:992px){
+    .msf-single-step {
+        width: 800px;
+    }
+    .msf-container {
+        width: 1200px;
+    }
+
+    .msf-step-input-field.checkbox-describe {
+        margin-left: 240px;
+    }
+    .msf-step-input-field.checkbox-describe label {
+        margin-top: 50px;
+        margin-left: 20px;
+    }
+    .msf-step-input-field.checkbox-describe input {
+        width: 670px;
+    }
+
+    
+.pare {
+    display: flex;
+}
+.pare-2 {
+    margin-left: 50px;
+}
+.pare-3 {
+    margin-left: 100px;
+}
+.pare-4 {
+    margin-left: 150px;
+}
+.pare-5 {
+    margin-left: 250px;
+}
+
+
+    .msf-step-input.flex-d .msf-step-input-field input {
+        width: 250px;
+    }
+    .msf-step-input.flex-d .msf-step-input-field.flex-column.input-c input {
+        width: 180px;
+    }
+    .msf-step-input-field.flex-column.input-c {
+        margin-left: 50px;
+    }
+    .flex-d {
+        display: flex;
+    }
+    
+  } 
+ /* Tablet Layout: 768px */ 
+ @media only screen and (min-width:768px) and (max-width:991px){ 
+    .msf-step-title h2 {
+        font-size: 50px;
+    }
+    
+    .msf-step-title p {
+        font-size: 14px;
+        line-height: 1.7em;
+    }
+  }
+ /* Mobile Layout 320px */ 
+ @media only screen and (max-width:767px){ 
+    .msf-step-input-field {
+        display: flex;
+        flex-direction: column;
+    }
+    .msf-step-input-field label {
+        padding: 10px 20px;
+    }
+    .msf-step-input-field input {
+        width: 90%;
+    }
+
+    .msf-step-title h2 {
+        font-size: 40px;
+    }
+    .msf-step-title p {
+        font-size: 14px;
+        line-height: 1.7em;
+    }
+  } 
+/* Wide Mobile Layout 480px */
+@media only screen and (min-width:480px) and (max-width:766px){
+    .msf-step-title h2 {
+        font-size: 30px;
+    }
+} 
+/*=================
+<---End---> responsive CSS3
+ ===================*/
+ /* The End Multi Step Form */

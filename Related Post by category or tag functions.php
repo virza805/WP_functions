@@ -271,7 +271,7 @@ add_action('wp_footer', 'get_footer_custom_script');
 <?php 
   }
 // Use old editor for post
-add_filter('use_block_editor_for_post', '__return_false', 10)
+add_filter('use_block_editor_for_post', '__return_false', 10);
 
 
 
