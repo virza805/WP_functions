@@ -1,275 +1,429 @@
+/**
+Theme Name: Astra Child
+Author: Brainstorm Force
+Author URI: http://wpastra.com/about/
+Description: Astra is the fastest, fully customizable & beautiful theme suitable for blogs, personal portfolios and business websites. It is very lightweight (less than 50KB on frontend) and offers unparalleled speed. Built with SEO in mind, Astra comes with schema.org code integrated so search engines will love your site. Astra offers plenty of sidebar options and widget areas giving you a full control for customizations. Furthermore, we have included special features and templates so feel free to choose any of your favorite page builder plugin to create pages flexibly. Some of the other features: # WooCommerce Ready # Responsive # Compatible with major plugins # Translation Ready # Extendible with premium addons # Regularly updated # Designed, Developed, Maintained & Supported by Brainstorm Force. Looking for a perfect base theme? Look no further. Astra is fast, fully customizable and beautiful theme!
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: astra-child
+Template: astra
+*/
+
+
 /* Start Multi Step Form */
-
-.msf-step-input, .target-btn{
-    display: none;
+.modal-full.in {
+    z-index: 9999;
+    padding-right: 0 !important;
 }
-.msf-step-input.active {
+ .modal-full .modal-dialog {
+     width: 100%;
+     margin: 0;
+}
+ .modal-full .modal-content {
+     border-radius: 0;
+     min-height: 100vh;
+}
+.modal-full .content .logo-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-}
-div#step3 {
-    flex-direction: column;
-}
-.target-btn.current {
-    display: block;
-}
-
-.full-width {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-.msf-container {
-    margin: 0 auto;
-    /* background: #cecece; */
-}
-.msf-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.msf-single-step {
-    /* background: #bbb0b0; */
-    margin: 40px 0;
-}
-.msf-step-title h2 {
-    font-size: 70px;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-
-.msf-step-title p {
-    font-size: 18px;
-    font-family: sans-serif;
-    color: #6b6666;
-    font-weight: 600;
-    margin: 0;
-    padding: 0;
-    line-height: 1.7em;
-    margin-bottom: 15px;
-}
-.msf-step-input-field label {
-    font-size: 18px;
-    font-family: sans-serif;
-    font-weight: 600;
-}
-.msf-step-title {
-    margin-bottom: 60px;
-}
-.msf-step-input-field input, .msf-step-input-field select {
-    width: 350px;
-    border-radius: 40px;
-    border:1px solid #efefef;
-    background: #efefef;
-	padding: 20px;
-}
-.flex-column {
-    display: flex;
-    flex-direction: column;
-}
-.input-c {
-    position: relative;
-    z-index: 1;
-}
-.input-c:before {
-    position: absolute;
-    left: 22px;
-    top: 9px;
-    width: 25px;
-    height: 24px;
-    content: "C";
-    z-index: 2;
-    font-size: 33px;
-}
-.input-c::after {
-    position: absolute;
-    left: 59px;
-    top: 41px;
-    width: 166px;
-    height: 1px;
-    content: "";
-    z-index: 2;
-    font-size: 33px;
-    background: #aba9a9;
-}
-.input-c input {
-    padding-left: 56px;
-}
-.msf-step-input {
-    padding: 10px 40px;
-}
-.msf-step-input-field.flex-column label {
-    margin-left: 18px;
-    margin-top: 16px;
-}
-.msf-step-input-field {
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-.msf-step-input-field label {
-    width: 200px;
-    display: inline-block;
-}
-
-.msf-single-step.msf-buttons {
-    display: flex;
-    align-content: center;
-    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 50px auto;
+    max-width: 1200px;
 }
-
-.msf-buttons button {
-    padding: 12px 16px;
-    border: 1px solid #f27100;
-    margin: 0 10px;
-    border-radius: 5px;
+.x-btn button {
+    border: 0;
+    background-color: transparent;
+    font-size: 35px;
     color: #f27100;
-    background: none;
-    cursor: pointer;
-    width: 100px;
-    transition: 0.4s;
+}
+ .msf-step-input, .target-btn{
+     display: none;
+}
+ .msf-step-input.active {
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+}
+ div#step3 {
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+         -ms-flex-direction: column;
+             flex-direction: column;
+}
+ .target-btn.current {
+     display: block;
+}
+ .full-width {
+     width: 100%;
+     margin: 0;
+     padding: 0;
+}
+ .msf-container {
+     margin: 0 auto;
+}
+ .msf-wrap {
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+         -ms-flex-direction: column;
+             flex-direction: column;
+     -webkit-box-align: start;
+         -ms-flex-align: start;
+             align-items: flex-start;
+}
+ .msf-single-step {
+     margin: 40px 0;
+}
+ .msf-step-title h2 {
+     margin: 0;
+     padding: 0;
+     font-family: 'Campton';
+     font-weight: bold;
+     font-size: 90px;
+     color: #000;
+}
+ .msf-step-title p {
+     font-size: 28px;
+     color: #8A8C8C;
+     font-weight: 600;
+     margin: 0;
+     padding: 0;
+     line-height: 1.7em;
+     margin-bottom: 15px;
+}
+ .msf-step-input-field label {
+     font-size: 20px;
+     font-weight: bold;
+     font-family: 'Campton';
+     color: #000;
+}
+ .msf-step-title {
+     margin-bottom: 60px;
+}
+ .msf-step-input-field input, .msf-step-input-field select {
+     max-width: 350px;
+     border-radius: 40px;
+     border: 1px solid #EFF0F0;
+     background: #EFF0F0;
+     padding: 20px;
+     font-size: 20px;
+}
+ .flex-column {
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+         -ms-flex-direction: column;
+             flex-direction: column;
+}
+ .input-c {
+     position: relative;
+     z-index: 1;
+}
+ .input-c:before {
+     position: absolute;
+     left: 22px;
+     top: 20px;
+     width: 25px;
+     height: 24px;
+     content: "C";
+     z-index: 2;
+     font-size: 33px;
+}
+ .input-c:after {
+     position: absolute;
+     left: 59px;
+     top: 44px;
+     width: 70%;
+     height: 1px;
+     content: "";
+     z-index: 2;
+     font-size: 33px;
+     background: #aba9a9;
+}
+ .input-c input {
+     padding-left: 56px;
+}
+ .msf-step-input {
+     padding: 10px 0;
+}
+ .msf-step-input-field.flex-column label {
+     margin-left: 18px;
+     margin-top: 16px;
+}
+ .msf-step-input-field {
+     margin-top: 25px;
+     margin-bottom: 25px;
+}
+ .msf-single-step.msf-buttons {
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     -ms-flex-line-pack: center;
+         align-content: center;
+     -webkit-box-pack: justify;
+         -ms-flex-pack: justify;
+             justify-content: space-between;
+     -webkit-box-align: center;
+         -ms-flex-align: center;
+             align-items: center;
+}
+ .msf-buttons button {
+     padding: 12px 16px;
+     border: 1px solid #f27100;
+     border-radius: 5px;
+     color: #f27100;
+     background: none;
+     cursor: pointer;
+     width: 100px;
+     -webkit-transition: 0.4s;
+     transition: 0.4s;
+}
+ .msf-buttons button:hover {
+     background: #f27100;
+     color: #fff;
+     -webkit-transition: 0.4s;
+     transition: 0.4s;
+}
+ button.step.next.current.target-btn {
+     margin-left: auto;
+}
+ .c-option {
+     background: #EFF0F0;
+     width: 430px;
+     padding: 10px 36px;
+     margin: 10px 20px;
+     border-radius: 35px;
+     text-align: left;
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-align: center;
+         -ms-flex-align: center;
+             align-items: center;
+     -ms-flex-line-pack: center;
+         align-content: center;
+     color: #000;
+     font-size: 14px;
+     line-height: 1;
+}
+ .c-option label {
+     margin-left: 6px;
+     cursor: pointer;
+     margin-bottom: 0;
+}
+ .c-option input {
+     cursor: pointer;
+     margin-top: 1px;
+}
+ select#reason {
+     margin-left: 50px;
+}
+ .msf-step-input-field.checkbox-describe {
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+         -ms-flex-direction: column;
+             flex-direction: column;
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+}
+ .msf-step-input-field.checkbox-describe label {
+     width: 100%;
+     margin-bottom: 14px;
+}
+ .msf-step-input-checkbox h4 {
+     font-size: 23px;
+     margin: 0;
+}
+ .msf-step-input-checkbox h4 + p {
+     font-size: 14px;
+     margin: 4px 0 20px 10px;
+     color: #000;
+}
+ .msf-step-input.active.name-email {
+     display: block;
+}
+ .name-email .msf-step-input-field input {
+     margin-left: 50px;
+}
+ .msf-step-input-field input{
+     max-width: 520px;
+     width: 100%;
+}
+ #message_area .error, #message_area .info {
+     color: red;
+     font-size: 15px;
+	 line-height: 1.5;
+}
+ #message_area .info {
+     color: #1997ec;
+}
+ #message_area {
+     margin-top: -30px;
 }
 
-.msf-buttons button:hover {
-    background: #f27100;
-    color: #fff;
-    transition: 0.4s;
-}
-
-.c-option {
-    background: #e0e0e0;
-    width: 350px;
-    font-size: 16px;
-    padding: 10px;
-    margin: 10px 20px;
-    border-radius: 30px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    align-content: center;
-}
-
-.c-option label {
-    margin-left: 6px;
-    cursor: pointer;
-}
-
-.c-option input {
-    cursor: pointer;
-}
-
-.msf-step-input-field.checkbox-describe {
-    flex-direction: column;
-    display: flex;
-}
-
-.msf-step-input-field.checkbox-describe label {
-    width: 100%;
-    margin-bottom: 14px;
-}
-.msf-step-input-checkbox h4 {
-    font-size: 23px;
-    margin: 0;
-}
-.msf-step-input-checkbox h4 + p {
-    font-size: 18px;
-    margin: 4px 0 20px 10px;
-    color: gray;
-}
-/*============= 
-For responsive CSS3 Start Now >---> 
- ==============*/
- /* Medium Layout 1280px */
+/* Medium Layout 1280px */
  @media only screen and (min-width:992px){
-    .msf-single-step {
-        width: 800px;
+     .msf-single-step {
+         width: 100%;
     }
-    .msf-container {
-        width: 1200px;
+     .msf-container {
+         width: 1200px;
     }
-
-    .msf-step-input-field.checkbox-describe {
-        margin-left: 240px;
+     .msf-step-input-field.checkbox-describe {
+         margin-left: 240px;
     }
-    .msf-step-input-field.checkbox-describe label {
-        margin-top: 50px;
-        margin-left: 20px;
+     .msf-step-input-field.checkbox-describe label {
+         margin-top: 50px;
+         margin-left: 20px;
     }
-    .msf-step-input-field.checkbox-describe input {
-        width: 670px;
+     .msf-step-input-field.checkbox-describe input {
+         max-width: 830px;
     }
-
-    
-.pare {
-    display: flex;
+     .pare {
+         display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+    }
+     .pare-2 {
+         margin-left: 50px;
+    }
+     .pare-3 {
+         margin-left: 100px;
+    }
+     .pare-4 {
+         margin-left: 150px;
+    }
+     .msf-step-input.flex-d .msf-step-input-field input {
+         width: 250px;
+    }
+     .msf-step-input.flex-d .msf-step-input-field.flex-column.input-c input {
+         width: 180px;
+    }
+     .msf-step-input-field.flex-column.input-c {
+         margin-left: 50px;
+    }
+     .flex-d {
+         display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+    }
 }
-.pare-2 {
-    margin-left: 50px;
+/* Tablet Layout: 768px */
+ @media only screen and (min-width:768px) and (max-width:991px){
+     .msf-step-title h2 {
+         font-size: 50px;
+    }
+     .msf-step-title p {
+         font-size: 14px;
+         line-height: 1.7em;
+    }
+     .msf-step-input-field.flex-column.input-c {
+         margin-left: 15px;
+    }
 }
-.pare-3 {
-    margin-left: 100px;
+/* Mobile Layout 320px */
+ @media only screen and (max-width:767px){
+     .step1.msf-step-input.active {
+         display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+         -webkit-box-orient: vertical;
+         -webkit-box-direction: normal;
+             -ms-flex-direction: column;
+                 flex-direction: column;
+    }
+     .msf-single-step {
+         width: 100%;
+    }
+     .msf-step-input-field {
+         display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+         -webkit-box-orient: vertical;
+         -webkit-box-direction: normal;
+             -ms-flex-direction: column;
+                 flex-direction: column;
+    }
+     .msf-step-input-field label {
+         padding: 0;
+         font-size: 16px;
+         margin-top: 10px !important;
+    }
+     .msf-step-input-field input {
+         width: 100%;
+         font-size: 14px;
+         padding: 10px 20px;
+    }
+     .msf-step-title h2 {
+         font-size: 40px;
+    }
+     .msf-step-title p {
+         font-size: 14px;
+         line-height: 1.7em;
+    }
+     .input-c:before {
+         position: absolute;
+         left: 18px;
+         top: 13px;
+         font-size: 18px;
+    }
+     .input-c:after {
+         width: 65%;
+         top: 35px;
+    }
+     .input-c input {
+         padding-left: 56px !important;
+    }
+     .msf-step-input-field {
+         margin-top: 10px;
+         margin-bottom: 10px;
+    }
+     .msf-single-step {
+         margin: 15px 0;
+    }
+     .msf-buttons button {
+         padding: 8px 10px;
+         line-height: initial;
+    }
+     .msf-step-title {
+         margin-bottom: 0px;
+    }
+     .c-option {
+         width: 100%;
+         padding: 10px 20px;
+         margin: 10px 0;
+         min-height: 50px;
+    }
+     .name-email .msf-step-input-field input {
+         margin-left: 0;
+    }
+     .msf-step-input-field select {
+         margin-left: 0 !important;
+         padding: 10px 20px;
+         max-width: 100%;
+         width: 100%;
+         font-size: 14px;
+    }
+     .msf-step-input.active {
+         display: block;
+    }
 }
-.pare-4 {
-    margin-left: 150px;
-}
-.pare-5 {
-    margin-left: 250px;
-}
-
-
-    .msf-step-input.flex-d .msf-step-input-field input {
-        width: 250px;
-    }
-    .msf-step-input.flex-d .msf-step-input-field.flex-column.input-c input {
-        width: 180px;
-    }
-    .msf-step-input-field.flex-column.input-c {
-        margin-left: 50px;
-    }
-    .flex-d {
-        display: flex;
-    }
-    
-  } 
- /* Tablet Layout: 768px */ 
- @media only screen and (min-width:768px) and (max-width:991px){ 
-    .msf-step-title h2 {
-        font-size: 50px;
-    }
-    
-    .msf-step-title p {
-        font-size: 14px;
-        line-height: 1.7em;
-    }
-  }
- /* Mobile Layout 320px */ 
- @media only screen and (max-width:767px){ 
-    .msf-step-input-field {
-        display: flex;
-        flex-direction: column;
-    }
-    .msf-step-input-field label {
-        padding: 10px 20px;
-    }
-    .msf-step-input-field input {
-        width: 90%;
-    }
-
-    .msf-step-title h2 {
-        font-size: 40px;
-    }
-    .msf-step-title p {
-        font-size: 14px;
-        line-height: 1.7em;
-    }
-  } 
 /* Wide Mobile Layout 480px */
-@media only screen and (min-width:480px) and (max-width:766px){
-    .msf-step-title h2 {
-        font-size: 30px;
+ @media only screen and (min-width:480px) and (max-width:766px){
+     .msf-step-title h2 {
+         font-size: 30px;
     }
-} 
-/*=================
-<---End---> responsive CSS3
- ===================*/
- /* The End Multi Step Form */
+}
+ 
