@@ -52,6 +52,19 @@ function get_custom_script_init(){
 		</script>
     <?php
 }
+// add javaScript hook for footer 
+add_action('wp_footer', 'get_footer_custom_script');
+function get_footer_custom_script(){
+  ?>
+  <script src='https://cloneona.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+<script>
+	jQuery(document).ready(function () {
+
+		// add code here 
+	});
+</script>
+<?php
+}
 
 // add notification_bar Short Code
 add_shortcode('multi_step_form','multi_step_fun');
