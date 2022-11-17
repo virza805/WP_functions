@@ -53,4 +53,25 @@ function get_custom_script_init(){
     <?php
 }
 
+// add notification_bar Short Code
+add_shortcode('multi_step_form','multi_step_fun');
+function multi_step_fun(){
+	ob_start(); ?>
+
+<div>Notification</div>
+
+<?php
+    return ob_get_clean();
+}
+
+// WooCommerc hook My Account page 
+add_action( 'woocommerce_before_customer_login_form', 'notification_add');
+function notification_add() {
+
+    // echo do_shortcode('[notification_bar]');
+    // if(isset($_GET['abcd'])){  url ?abcd dea hit korta hoba
+    //     echo do_shortcode('[notification_bar]');
+    // }
+
+}
 
