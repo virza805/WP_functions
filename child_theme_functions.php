@@ -89,7 +89,6 @@ function get_footer_custom_script(){
 	});
 </script>
 
-
 <?php
 }
 
