@@ -79,6 +79,25 @@ function get_footer_custom_script(){
     // const boxId = document.getElementsById("IdName");
     // boxId.appendChild(el);
     box[0].appendChild(el);
+
+
+    // class add Or remove relation with focus
+    
+    //  onfocus="addF()"
+    document.getElementById("amount").addEventListener("focus", addF);
+    function addF() {
+        let element = document.getElementById("amount-icon");
+        element.classList.add("carrancy");
+    }
+    
+    // onfocusout="removeF()"
+    document.getElementById("amount").addEventListener("focusout", removeF);
+    function removeF() {
+        let element = document.getElementById("amount-icon");
+        element.classList.remove("carrancy");
+    }
+
+
 </script>
 
   <script src='https://cloneona.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
