@@ -202,3 +202,24 @@ function n_thanks_fun(){
     }else{
         $passed = true;
     }
+
+
+// check login user with relation redirect page url
+add_action('init', 'check_login_function');
+function check_login_function() {
+	
+	$postID = url_to_postid( $_SERVER['REQUEST_URI'] , '_wpg_def_keyword', true ); 
+	if(in_array($postID,[5218,5285,5286]) && !is_user_logged_in()){
+		wp_safe_redirect('https://www.convair.net.au/user');
+		exit();
+	}
+
+	if(in_array($postID,[5339,5202]) && is_user_logged_in()){
+		wp_safe_redirect('https://www.convair.net.au/userprofile');
+		exit();
+	}
+	
+}
+
+
+
