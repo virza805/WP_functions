@@ -1,5 +1,5 @@
 <?php 
-
+// add from Short code
 add_shortcode('order_form','order_fun');
 function order_fun($jekono){
 $result = shortcode_atts(array(
@@ -82,3 +82,5 @@ return ob_get_clean();
 
 }
 
+
+// add From view Short code
