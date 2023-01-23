@@ -1,0 +1,187 @@
+.container-wrap {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.from-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.left-content {
+    width: 200px;
+}
+
+/* .inactive.active {
+    display: block;
+} */
+
+/* .inactive {
+    display: none;
+} */
+tr#first_tr button.fast-remove-btn {
+    display: none;
+}
+
+.field_required,
+.error,
+#message_area {
+    color: red;
+}
+
+.warning {
+    border-color: red !important;
+    background: #ff00001f !important;
+}
+
+.flabel {
+    font-size: 16px;
+    font-family: sans-serif;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.input-fild {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-fild input,
+.input-fild select {
+    /* max-width: 182px; */
+    border-radius: 3px;
+    /* border: 1px solid #039347; */
+    border: 1px solid #d2dcd6;
+    background: #f8f8f8;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.table-row {
+    vertical-align: top;
+}
+
+input.qty {
+    width: 40px;
+    padding: 4px;
+    margin-left: 4px;
+}
+
+#tr_container .table-row td:nth-child(1),
+#tr_container .table-row td:nth-child(2) {
+    width: 162px;
+}
+
+#tr_container .table-row td:nth-child(3) {
+    width: 670px;
+}
+
+#tr_container .table-row td:nth-child(2) .input-fild {
+    margin-right: 6px;
+}
+
+.input-fild {
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+#tr_container tr.table-row:nth-child(even) {
+    background: #f8f8f8;
+    box-shadow: 0px 0px 4px #ccc8c8;
+    border-radius: 7px;
+}
+
+.hc {
+    margin: 0;
+    margin-bottom: 6px;
+}
+
+.c-option {
+    margin-bottom: 6px;
+}
+
+label.clabel {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+label.clabel input[type='checkbox'] {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}
+
+button.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background: #039347;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 2px;
+    border: 0;
+    border-radius: 4px;
+    margin-top: 25px;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+button.submit-btn:hover {
+    background: #ED1E1E;
+    color: #fddb00;
+}
+
+table {
+    border-spacing: 0;
+}
+
+.add-remove {
+    text-align: center;
+}
+
+.add-remove-btn button {
+    cursor: pointer;
+    font-size: 18px;
+    width: 38px;
+    border: 0;
+    background: green;
+    color: #fff;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+button.fast-remove-btn {
+    margin-left: 5px;
+    background: red;
+}
+
+.add-remove-btn button:hover {
+    color: yellow;
+}
+
+.column-2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column-2 .input-fild {
+    width: 290px;
+}
+
+.coolingModel .qty {
+    padding: 8px;
+}
+
+.input-fild.model.coolingModel,
+.input-fild.accessories.coolingAccessories {
+    width: 100%;
+}
+/*
+ * The end Order Form
+ * */
+
+
+
+
+
