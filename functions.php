@@ -44,7 +44,7 @@ add_filter( 'use_widgets_block_editor', '__return_false' ); // user for old widg
 add_action('wp_footer', 'get_footer_custom_script');
 function get_footer_custom_script(){
   ?>
-<script src='https://cloneona.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+<script src='https://code.jquery.com/jquery-3.6.1.min.js' id='jquery-core-js'></script>
 <script>
     let active_step = 1;
     let max_step = 4;

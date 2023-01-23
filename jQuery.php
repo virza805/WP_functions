@@ -4,7 +4,7 @@ add_action('wp_footer', 'get_footer_custom_script');
 function get_footer_custom_script(){
 ?>
 
-<script src='https://cloneona.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+<script src='https://code.jquery.com/jquery-3.6.1.min.js' id='jquery-core-js'></script>
 <script>
 	jQuery(document).ready(function () {
 
@@ -46,9 +46,15 @@ function get_footer_custom_script(){
 </script>
     <th><input type="checkbox" onClick="toggle(this)" checked/></th>
 
+<!-- Add Class Remove Class toggle -->
+<button class="spin" type="button" onclick="toggleFunction()" >SPIN</button>
 
-
-
+<script>
+function toggleFunction() {
+    var element = document.getElementById("wheelChart");
+    element.classList.toggle("startRotate");
+}
+</script>
 
 
 <?php
