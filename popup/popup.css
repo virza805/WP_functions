@@ -1,4 +1,4 @@
-  /*Table Order Details popup css Start now*/
+/*popup css Start now*/
 .popup-wrap {
     font: normal 14px/100% "Andale Mono", AndaleMono, monospace;
     width: 300px;
@@ -19,7 +19,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0; /* z-index: 1050; */
+    left: 0;
     -webkit-overflow-scrolling: touch;
     outline: 0;
     opacity: 0;
@@ -127,4 +127,4 @@
     font-size: 30px;
     color: #fff;
   }
-  /*Table Order Details popup css The end*/
+  /*popup css The end*/

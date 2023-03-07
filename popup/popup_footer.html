@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,58 +8,60 @@
 	<title>Popup</title>
 	<link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
-	
+
 <!-- Add Popup section Start Now-->
 <div class="popup-wrap">
-	
-	<div class="Click-here">Click button</div>
-<div class="popup-model-main">
-	<div class="popup-model-inner">
-		<div class="close-btn">×</div>
-		<div class="popup-model-wrap">
-			<div class="pop-up-content-wrap">
-				<h2 id="popup_title">Title</h2>
-				<h4 id="popup_smtitle">Sub Title</h4>
-				<div id="popup_des">Content</div>
 
+	<div class="Click-here">Click button</div>
+	<div class="popup-model-main">
+		<div class="popup-model-inner">
+			<div class="close-btn">×</div>
+			<div class="popup-model-wrap">
+				<div class="pop-up-content-wrap">
+					<h2 id="popup_title">Title</h2>
+					<h4 id="popup_smtitle">Sub Title</h4>
+					<div id="popup_des">Content</div>
+
+				</div>
 			</div>
 		</div>
+		<div class="bg-overlay"></div>
 	</div>
-	<div class="bg-overlay"></div>
-</div>
 
 </div>
 <!-- Popup section The end -->
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script >
-	$(".Click-here").on('click', function() {
-      $("#popup_title").text($(this).attr("data-title"));
-      $("#popup_smtitle").text($(this).attr("data-smtitle"));
-      $("#popup_des").html($(this).attr("data-des"));
-      $(".popup-model-main").addClass('model-open');
-    }); 
-    $(".close-btn, .bg-overlay").click(function(){
-      $(".popup-model-main").removeClass('model-open');
-    });
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script>
+		$(".Click-here").on('click', function () {
+			$("#popup_title").text($(this).attr("data-title"));
+			$("#popup_smtitle").text($(this).attr("data-smtitle"));
+			$("#popup_des").html($(this).attr("data-des"));
+			$(".popup-model-main").addClass('model-open');
+		});
+		$(".close-btn, .bg-overlay").click(function () {
+			$(".popup-model-main").removeClass('model-open');
+		});
 
-	
-//     // class add Or remove for popup
-// 	let tclass = document.getElementsByClassName("Click-here");
-// 	tclass[0].addEventListener("onclick", addClass);
 
-// 	function addClass() {
-// 			let element = document.getElementsByClassName("popup-model-main");
-// 			element.classList.add("model-open");
-// 	}
+		//     // class add Or remove for popup
+		// 	let tclass = document.getElementsByClassName("Click-here");
+		// 	tclass[0].addEventListener("onclick", addClass);
 
-// 	let ctclass = document.getElementsByClassName("close-btn");
-// 	ctclass[0].addEventListener("onclick", removeClass);
-// 	function removeClass() {
-// 			let element = document.getElementsByClassName("popup-model-main");
-// 			element.classList.remove("model-open");
-// 	}
-</script>
+		// 	function addClass() {
+		// 			let element = document.getElementsByClassName("popup-model-main");
+		// 			element.classList.add("model-open");
+		// 	}
+
+		// 	let ctclass = document.getElementsByClassName("close-btn");
+		// 	ctclass[0].addEventListener("onclick", removeClass);
+		// 	function removeClass() {
+		// 			let element = document.getElementsByClassName("popup-model-main");
+		// 			element.classList.remove("model-open");
+		// 	}
+	</script>
 </body>
+
 </html>

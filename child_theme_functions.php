@@ -216,10 +216,89 @@ function check_login_function() {
 
 	if(in_array($postID,[5339,5202]) && is_user_logged_in()){
 		wp_safe_redirect('https://www.convair.net.au/userprofile');
+		// wp_safe_redirect(get_permalink( wc_get_page_id( 'myaccount' ) )); // my account page
 		exit();
 	}
 	
 }
+
+
+
+// category link by product id 
+
+// global $product;
+// $product_id = $product->get_id();
+$product_id = get_the_ID();
+$_product = wc_get_product($product_id);
+// echo "<pre>";
+// print_r($_product);
+// echo "</pre>";
+
+$cats = $_product->get_category_ids();
+foreach ($cats as $key => $value) {
+	$catLink = get_category_link($value);
+	?>
+
+	<a class="back-to-all" href="<?php echo $catLink ?>">&#8592; back to all devices</a><br>
+
+	<?php
+}
+
+
+
+// use wp default text editor
+    $content = $id ? $r->popup : "Enter your popup text";
+    // html_entity_decode(stripcslashes($content));
+    // wp_editor( $content, $editor_id, $settings );
+    wp_editor( $content, 'popup', array(
+        'wpautop'       => true,
+        'media_buttons' => false, // true | false
+        'textarea_name' => 'popup',
+        'editor_class'  => 'tpdm-input',
+        'textarea_rows' => 10
+    ) );
+
+
+
+add_filter( 'gettext', 'wpdocs_translate_text', 10, 3 );
+function wpdocs_translate_text( $translated_text, $untranslated_text, $domain ) {
+
+	switch ( $translated_text ) {
+
+		case '[Remove]' :
+
+			$translated_text = '[Fjarlægja]';
+			break;
+
+		case 'Coupon has been removed.' :
+
+			$translated_text = 'Afsláttarkóðinn hefur verið fjarlægt';
+			break;
+
+	}
+
+
+    return $translated_text;
+}
+
+
+// allowed to upload .jfif file type
+add_filter('mime_types', 'add_support_jfif_files');
+function add_support_jfif_files($mimes){
+    $mimes['svg'] = "image/jpeg";
+    return $mimes;
+}
+
+
+// Gift Card cart page
+
+if($values['wdm_user_custom_data_value']['gift_card_time']!='00:00:00'){
+    $return_string .= "<tr><td>Dagsetning: " . $values['wdm_user_custom_data_value']['gift_card_date'] . " @ " . $values['wdm_user_custom_data_value']['gift_card_time'] . "</td></tr>";
+}else{
+    $return_string .= "<tr><td>Dagsetning: " . $values['wdm_user_custom_data_value']['gift_card_date'] . "</td></tr>";
+}
+
+
 
 
 
