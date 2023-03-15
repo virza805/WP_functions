@@ -222,6 +222,14 @@ function check_login_function() {
 	
 }
 
+// redirect page url
+add_action( 'template_redirect', 'redirect_to_other_page' );
+function redirect_to_other_page() {
+    if (is_shop()) { // is_page( 143 )
+	    wp_redirect( '"'.home_url().'"', 301 );
+    exit;
+    }
+}
 
 
 // category link by product id 
@@ -243,7 +251,25 @@ foreach ($cats as $key => $value) {
 
 	<?php
 }
+ # another way to cat link id, name
+    //   echo "Category ID: " . $category_id;
+	//   $category = get_queried_object(); // find url to id 
+	//   echo $category->term_id;
 
+  	$taxonomy = 'place';
+    $args = array(
+      'taxonomy' => $taxonomy, // Use "product_cat" for WooCommerce product categories
+      'hide_empty' => false, // Show even empty categories
+      'orderby' => 'name', // Order by category name
+      'order' => 'ASC', // Sort in ascending order
+    );
+    $categories = get_terms( $args );
+	if ( ! empty( $categories ) && ! is_wp_error( $categories ) ){
+		foreach ( $categories as $category ) {
+            // get_term($category);
+		    echo '<li><a href="'. get_term_link( $category ).'">'.$category->name.'</a></li>';
+		}
+	}
 
 
 // use wp default text editor
@@ -259,7 +285,47 @@ foreach ($cats as $key => $value) {
     ) );
 
 
+// add Template file in plugin Start Now
+    add_filter( 'page_template', 'plugin_wc_page_template' );
+    function plugin_wc_page_template( $page_template ) {
+        // if ( is_page( 'my-custom-page-slug' ) ) {
+        //     $page_template = dirname( __FILE__ ) . '/sub_page_table6_dynamic_popup.php';
+        // }
+        if ( get_page_template_slug() == 'cat-pro.php' ) {
+            $page_template = dirname( __FILE__ ) . '/cat-pro.php'; // Template file
+        }
+    
+        return $page_template;
+    }
+    
+    add_filter( 'theme_page_templates', 'plugin_wc_page_template_name_to_select', 10, 4 );
+    function plugin_wc_page_template_name_to_select( $post_templates, $wp_theme, $post, $post_type ) {
+    
+        // Add custom template named ub_page_table6_dynamic_popup_data.php to select dropdown 
+        $post_templates['cat-pro.php'] = __('WC Place Category');
+    
+        return $post_templates;
+    }
 
+// add Template file in plugin The End
+
+// WC Archive Template Override
+add_filter( 'template_include', 'custom_product_category_template', 99 );
+function custom_product_category_template( $template ) {
+    if ( is_tax( 'product_cat' ) ) {
+
+        // $template = get_stylesheet_directory() . '/woocommerce/cat-pro.php';
+        $template = dirname( __FILE__ ) . '/cat-pro.php';
+    }
+    return $template;
+}
+
+
+
+
+
+
+// For replase text
 add_filter( 'gettext', 'wpdocs_translate_text', 10, 3 );
 function wpdocs_translate_text( $translated_text, $untranslated_text, $domain ) {
 
@@ -300,5 +366,51 @@ if($values['wdm_user_custom_data_value']['gift_card_time']!='00:00:00'){
 
 
 
+// Show single row in db Query
+  global $wpdb;
+$category_id = 564;
+$r  	 = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}place WHERE cat_id='{$category_id}'");
+$placeId = $r->place_id_name;
+
+// Show all row in db Query
+  global $wpdb;
+$place_data = $wpdb->get_results("SELECT id, cat_id, place_id_name FROM {$wpdb->prefix}place ORDER BY id DESC", ARRAY_A);
+$placeId = $place_data->place_id_name;
 
 
+// .product-price table.wdm_options_table tbody tr td:before, tr.cart-subtotal {
+//     display: none !important;
+// }
+// table.shop_table.shop_table_responsive.cart.woocommerce-cart-form__contents tbody tr:nth-last-child(1) {
+    // display: none;
+// }
+// add_action( 'template_redirect', 'redirect_url_to_other_page' );
+// function redirect_url_to_other_page() {
+//     if (is_shop()) { // is_page( 143 )
+// 	    wp_redirect( '"'.home_url().'"', 301 );
+//     exit;
+//     }
+// }
+
+
+// For replase text
+// add_filter( 'gettext', 'wpdocs_translate_text', 10, 3 );
+// function wpdocs_translate_text( $translated_text, $untranslated_text, $domain ) {
+
+// 	switch ( $translated_text ) {
+
+// 		case 'Millisamtala' :
+
+// 			$translated_text = 'Samtals';
+// 			break;
+
+// 		// case 'Coupon has been removed.' :
+
+// 		// 	$translated_text = 'Afsláttarkóðinn hefur verið fjarlægt';
+// 		// 	break;
+
+// 	}
+
+
+//     return $translated_text;
+// }
