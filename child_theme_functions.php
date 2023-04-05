@@ -298,7 +298,14 @@ if($values['wdm_user_custom_data_value']['gift_card_time']!='00:00:00'){
     $return_string .= "<tr><td>Dagsetning: " . $values['wdm_user_custom_data_value']['gift_card_date'] . "</td></tr>";
 }
 
-
+/*
 // Tanvir test 
+https://tastewp.com/#!
+
+Site name: Bear Knowledge
+URL: https://bearknowledge.s3-tastewp.com
+Username: admin
+Password: KnX8NABsvRM
 
 
+*/
