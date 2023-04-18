@@ -1,4 +1,6 @@
 <?php  
+// for ubuntu os wordpress localhost asking for ftp
+// define('FS_METHOD', 'direct');
 
 // remove updated widgets style
 function example_theme_support() {
@@ -30,6 +32,29 @@ function remove_update_notifications( $value ) {
 add_action('wp_head', 'get_custom_script_init');
 function get_custom_script_init(){
 	?>
+    <style>
+    .spin {
+        text-align: center;
+        height: 320px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .spin img {
+        animation: rotet 3s linear infinite;
+        width: 150px;
+        height: 150px;
+    }
+    @keyframes rotet {
+        0%{
+            transform: rotate(360deg);
+        }
+        100%{
+            transform: rotate(0deg);
+        }
+    }
+    </style>
     	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     	<script>
 			jQuery(document).ready(function () {
@@ -73,6 +98,12 @@ function get_footer_custom_script(){
 </style>
 <script>
 	
+    let title_js = "";
+    let dec_js = "";
+    window.wp.media.editor.insert( '[ short_code'+ '  '+'title="' + title_js + '"'+' '+ 'dec="' + dec_js + '" ]');
+
+
+
     const el = document.createElement("div");
     el.innerHTML = `<a href="https://svens.is/collections/frontpage/" class="empty_btn">Fara í vefverslun</a>`;
     const box = document.getElementsByClassName("woocommerce-mini-cart__empty-message");
@@ -245,6 +276,64 @@ foreach ($cats as $key => $value) {
 }
 
 
+// wooCommerce my-account 
+
+add_filter( 'woocommerce_account_menu_items', 'my_account_menu_order_label', 999 );
+
+function my_account_menu_order_label( $items ) {
+
+    $items['orders'] = __( 'My entries/orders', 'woocommerce' );
+
+    return $items;
+}
+
+
+add_filter( 'woocommerce_before_account_orders', 'order_page_title');
+function order_page_title() {
+
+    echo 'My entries/orders <br>';
+//    echo get_post_meta( 3292, 'total_tickets', true); | test post meta
+
+
+}
+/*
+add_filter( 'woocommerce_my_account_my_orders_columns', 'add_entrie_column_in_orders' );
+function add_entrie_column_in_orders( $columns ) {
+    $columns['entries_column'] = __( 'Entries', 'woocommerce' ); // number_of_tickets
+    return $columns;
+}
+*/
+// add order table th 
+add_filter( 'woocommerce_my_account_my_orders_columns', 'rearrange_my_account_orders_column' );
+function rearrange_my_account_orders_column( $columns ) {
+
+    $new_columns = array();
+
+    foreach ( $columns as $key => $name ) {
+
+        $new_columns[ $key ] = $name;
+
+        // add ship-to after order status column
+        if ( 'order-total' === $key ) {  //this is the line!
+            $new_columns['entries_column'] = __( 'Entries', 'woocommerce' );
+        }
+    }
+
+    return $new_columns;
+}
+
+// add order table td with value from get_post_meta 
+add_filter( 'woocommerce_my_account_my_orders_column_entries_column', 'add_entries_data_to_my_account_orders' );
+function add_entries_data_to_my_account_orders( $order ) {
+    // return $order->get_order_number();
+
+    // echo get_post_meta( $order_id, 'total_tickets', true);
+    if ( $value = $order->get_meta( 'total_tickets' ) ) {
+        echo esc_html( $value );
+    }
+}
+
+
 
 // use wp default text editor
     $content = $id ? $r->popup : "Enter your popup text";
@@ -298,6 +387,8 @@ if($values['wdm_user_custom_data_value']['gift_card_time']!='00:00:00'){
     $return_string .= "<tr><td>Dagsetning: " . $values['wdm_user_custom_data_value']['gift_card_date'] . "</td></tr>";
 }
 
+
+
 /*
 // Tanvir test 
 https://tastewp.com/#!
@@ -309,3 +400,4 @@ Password: KnX8NABsvRM
 
 
 */
+
