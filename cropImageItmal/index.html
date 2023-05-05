@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Crop image</title>
+
+  <link rel="stylesheet" href="./style.css">
+
+<style>
+  
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class='container-formss'>
+  
+  <input id='selectedFile' class="disp-none" type='file' accept=".png, .jpg, .jpeg, .svg">
+  <button id="upload-aphoto" class="">Select image</button>
+
+  <img id='confirm-img' src=''>
+</div>
+
+
+<div class="" id="imageModalContainer" style="display:none;">
+    <div class="crop-container-bg closeCrop"></div>
+    <div class="modal-crop-img-wrap">
+      <div class="crop-header">
+        <h5 class="crop-title" >Crop Image</h5>
+        <button type="button" id="" class="crop-btn-close closeCrop closeEdit" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="crop-body">
+        <div id='crop-image-container'>
+
+        </div>
+      </div>
+      <div class="crop-footer">
+        <button type="button" id="" class="crop-btn closeCrop cancelEdit" >Cancel</button>
+        <button type="button" class="crop-btn save-modal">Save</button>
+      </div>
+    </div>
+
+</div> 
+ 
+
+
+
+<!-- partial -->
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script  src="./script.js"></script>
+
+<script>
+
+// start Crop image
+$(document).on('click', '#upload-aphoto', function () {
+    document.getElementById('selectedFile').click();
+});
+
+$('#selectedFile').change(function () {
+    if (this.files[0] == undefined)
+      return;
+    $('#imageModalContainer').show('fast',modal_shown);
+    let reader = new FileReader();
+    reader.addEventListener("load", function () {
+      window.src = reader.result;
+      $('#selectedFile').val('');
+
+      // $(".popup-model-main").addClass('model-open');  // Open popup model
+
+    }, false);
+    if (this.files[0]) {
+      reader.readAsDataURL(this.files[0]);
+    }
+    
+});
+
+let croppi;
+function modal_shown() {
+  let width = document.getElementById('crop-image-container').offsetWidth - 20;
+  $('#crop-image-container').height((width - 80) + 'px');
+    croppi = $('#crop-image-container').croppie({
+      viewport: {
+        width: 300, // width
+        height: 240 
+      },
+    });
+  $('.modal-body1').height(document.getElementById('crop-image-container').offsetHeight + 50 + 'px');
+  croppi.croppie('bind', {
+    url: window.src,
+  }).then(function () {
+    croppi.croppie('setZoom', 0);
+  });
+}
+
+$('#imageModalContainer').on('hidden.bs.modal', function () {
+  
+});
+
+function croppi_destroy(){
+  croppi.croppie('destroy');
+}
+
+$(document).on('click', '.save-modal', function (ev) {
+  croppi.croppie('result', {
+    type: 'base64',
+    format: 'jpeg',
+    // size: 'original'
+
+		size: {
+			width: 1000,
+			height: 800
+		}
+    
+  }).then(function (resp) {
+      $('#confirm-img').attr('src', resp);
+      localStorage.setItem('myUploadImageCrop', resp);
+      $('#imageModalContainer').hide('fast',croppi_destroy);
+  });
+});
+
+
+$( ".closeCrop" ).click(function() {
+  $('#imageModalContainer').hide('fast',croppi_destroy);
+});
+
+</script>
+
+</body>
+</html>

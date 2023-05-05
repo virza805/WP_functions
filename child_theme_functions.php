@@ -292,8 +292,7 @@ add_filter( 'woocommerce_before_account_orders', 'order_page_title');
 function order_page_title() {
 
     echo 'My entries/orders <br>';
-//    echo get_post_meta( 3292, 'total_tickets', true); | test post meta
-
+    // echo get_post_meta( 3292, 'total_tickets', true); | test post meta
 
 }
 /*
@@ -303,6 +302,26 @@ function add_entrie_column_in_orders( $columns ) {
     return $columns;
 }
 */
+
+# url Redirect
+add_action( 'template_redirect', 'custom_redirects' );
+function custom_redirects() {
+   if ( function_exists( 'wp_redirect' ) ) {
+       $redirects = array(
+           '/dev/gjafakaup.is/shop/' => 'https://leikbreytir.com/dev/gjafakaup.is/kaupa/',
+         //   '/old-post-slug' => 'https://example.com/new-post-slug',
+           // Add more redirection rules here
+       );
+
+       foreach ( $redirects as $old_url => $new_url ) {
+           if ( $_SERVER['REQUEST_URI'] == $old_url ) {
+               wp_redirect( $new_url, 301 );
+               exit();
+           }
+       }
+   }
+}
+
 // add order table th 
 add_filter( 'woocommerce_my_account_my_orders_columns', 'rearrange_my_account_orders_column' );
 function rearrange_my_account_orders_column( $columns ) {
