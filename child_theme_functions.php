@@ -406,7 +406,30 @@ if($values['wdm_user_custom_data_value']['gift_card_time']!='00:00:00'){
     $return_string .= "<tr><td>Dagsetning: " . $values['wdm_user_custom_data_value']['gift_card_date'] . "</td></tr>";
 }
 
+// wp Pagenation
+$pagenum = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
 
+$limit = 10; // number of rows in page
+$offset = ( $pagenum - 1 ) * $limit;
+$total = $wpdb->get_var( "SELECT COUNT(`id`) FROM {$wpdb->prefix}books" );
+$num_of_pages = ceil( $total / $limit );
+$entries = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}books LIMIT $offset, $limit" );
+
+
+
+
+$page_links = paginate_links( array(
+    'base' => add_query_arg( 'pagenum', '%#%' ),
+    'format' => '',
+    'prev_text' => __( '&laquo;', 'text-domain' ),
+    'next_text' => __( '&raquo;', 'text-domain' ),
+    'total' => $num_of_pages,
+    'current' => $pagenum
+) );
+
+if ( $page_links ) {
+    echo '<div class="tablenav"><div class="tablenav-pages" style="margin: 1em 0">' . $page_links . '</div></div>';
+}
 
 /*
 // Tanvir test 
