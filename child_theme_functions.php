@@ -442,4 +442,4 @@ Password: KnX8NABsvRM
 
 
 */
-
+// <input value="" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="gift_card_phone" maxlength="7" minlength="7">
