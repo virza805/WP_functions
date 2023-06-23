@@ -32,7 +32,7 @@ function remove_update_notifications( $value ) {
 add_action('wp_head', 'get_custom_script_init');
 function get_custom_script_init(){
 	?>
-    <style>
+<style>
     .spin {
         text-align: center;
         height: 320px;
@@ -54,7 +54,7 @@ function get_custom_script_init(){
             transform: rotate(0deg);
         }
     }
-    </style>
+</style>
     	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     	<script>
 			jQuery(document).ready(function () {
@@ -82,19 +82,19 @@ add_action('wp_footer', 'get_footer_custom_script');
 function get_footer_custom_script(){
   ?>
 <style>
-.empty_btn {
-    font-family: "Poppins", Sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    fill: #333232;
-    color: #333232;
-    background-color: #FFD529;
-    padding: 8px 16px;
-    border-radius: 3px;
-    margin-top: 20px;
-    display: inline-block;
-}
+    .empty_btn {
+        font-family: "Poppins", Sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        fill: #333232;
+        color: #333232;
+        background-color: #FFD529;
+        padding: 8px 16px;
+        border-radius: 3px;
+        margin-top: 20px;
+        display: inline-block;
+    }
 </style>
 <script>
 	
@@ -443,3 +443,49 @@ Password: KnX8NABsvRM
 
 */
 // <input value="" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="gift_card_phone" maxlength="7" minlength="7">
+
+
+
+# textDomain=button-text-changer-wc | prefix=btcwc_
+add_filter('woocommerce_settings_tabs_array', 'btcwc_add_fild', 50);
+function btcwc_add_fild($settings_tab) {
+    $settings_tab['btcwc_fild'] = __('btnTextChange', 'button-text-changer-wc');
+    return $settings_tab;
+}
+
+// add new fild in wc setting
+add_action('woocommerce_settings_tabs_btcwc_fild', 'btcwc_add_fild_settings');
+function btcwc_add_fild_settings() {
+    woocommerce_admin_fields(get_btcwc_fild_settings());
+}
+
+// upload data in option table
+add_action('woocommerce_update_options_btcwc_fild', 'btcwc_update_options_fild_settings');
+function btcwc_update_options_fild_settings() {
+    woocommerce_update_options(get_btcwc_fild_settings());
+}
+
+
+
+function get_btcwc_fild_settings() {
+    $settings = array(
+        'section_title' => array(
+            'id' => 'btcwc_fild_settings_title',
+            'desc' => 'You can control btcwc course',
+            'type' => 'title',
+            'name' => __('wooCommerce Button Text Change Settings', 'button-text-changer-wc'),
+        ),
+        'btcwc_add_to_cart' => array(
+            'id' => 'btcwc_fild_btcwc_add_to_cart',
+            'desc' => __('Now you can set add to cart button text. Default it show Add to cart.', 'button-text-changer-wc'),
+            'type' => 'text',
+            'desc_tip' => true,
+            'name' => __('Add to Cart button', 'button-text-changer-wc'),
+        ),
+    );
+
+    return apply_filters('filter_btcwc_fild_settings', $settings);
+}
+
+
+
