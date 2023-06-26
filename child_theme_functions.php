@@ -489,3 +489,36 @@ function get_btcwc_fild_settings() {
 
 
 
+
+
+// Cron job Start
+
+// 60 seconds interval schedules
+add_filter( 'cron_schedules', 'add_sixty_second_interval' );
+function add_sixty_second_interval( $schedules ) {
+    $schedules['sixty_seconds'] = array(
+        'interval' => 60,
+        'display' => __( 'Every 60 seconds' )
+    );
+    return $schedules;
+}
+
+register_activation_hook( __FILE__, 'gtw_activation' );
+function gtw_activation() {
+	
+	if (! wp_next_scheduled ( 'gtw_sms_send_corn' )) {
+    	wp_schedule_event( time(), 'sixty_seconds', 'gtw_sms_send_corn' ); // sixty_seconds | hourly | daily
+    }
+}
+
+register_deactivation_hook( __FILE__, 'gtw_deactivation' );
+function gtw_deactivation() {
+    wp_clear_scheduled_hook( 'gtw_sms_send_corn' );
+}
+
+
+add_action('gtw_sms_send_corn', 'gtw_sms_send_corn_every_minit');
+function gtw_sms_send_corn_every_minit(){
+    gtw_send_cron(); // this corn will be run every minute
+}
+// Cron job The end
