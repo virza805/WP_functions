@@ -522,3 +522,39 @@ function gtw_sms_send_corn_every_minit(){
     gtw_send_cron(); // this corn will be run every minute
 }
 // Cron job The end
+
+
+
+// custom table create and insert data
+// create database table name dealer_orders_address
+function dealer_orders_address_save(){
+    global $wpdb;
+    $table_name = $wpdb->prefix.'dealer_orders_address';
+    $sql = "CREATE TABLE {$table_name} (
+        id BIGINT NOT NULL AUTO_INCREMENT,
+        user_id BIGINT,
+        order_id BIGINT,
+        delivery_address VARCHAR(250),
+        PRIMARY KEY (id)
+    );";
+    require_once (ABSPATH."wp-admin/includes/upgrade.php");
+    dbDelta($sql);
+
+}
+// Hook the function to run when the theme is activated
+add_action('after_setup_theme', 'dealer_orders_address_save'); // for child theme in function.php
+register_activation_hook(__FILE__, "dealer_orders_address_save"); // for Plugin 
+
+
+
+// insert address in my custom table "dealer_orders_address"
+global $wpdb;
+$table_name = $wpdb->prefix . 'dealer_orders_address';
+// Prepare data for insertion
+$data = array(
+    'user_id' => $userId, // $item_id
+    'order_id' => $post_id,
+    'delivery_address' => $deliveryAdd,   
+);
+// Insert the data into the custom table
+$wpdb->insert($table_name, $data);
