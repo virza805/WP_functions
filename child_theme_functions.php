@@ -558,3 +558,75 @@ $data = array(
 );
 // Insert the data into the custom table
 $wpdb->insert($table_name, $data);
+
+
+add_action('wp_footer', 'get_fetch_price_script');
+function get_fetch_price_script(){
+?>
+<script>
+ // add your javaScript here
+ 
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+// https://fedingo.com/how-to-listen-to-variable-changes-in-javascript/
+
+// This function works as like vue watcher | now it only work gift_card_create_new_tab_panel()
+var img_tabs_data = new Proxy(targetProxy, {
+        
+    set: function (target, key, value) {
+        //console.log(`${key} set to ${value}`);
+        target[key] = value;
+
+        // set target input value here
+        const jsonString = JSON.stringify(targetProxy);
+        jQuery(".imgStyleTabs input[name=wodgc_tab_images]").val(jsonString);
+
+        return true;
+    },
+    get: function (target, key) {
+        console.log("Update virza === "+targetProxy);  
+        return target[key];
+    }
+
+});
+
+
+
+// WordPress Media Libray select when click button
+
+jQuery(document).ready(function(){
+
+function wodgc_tab_img_upload(button_class) {
+    
+    jQuery('body').on('click', button_class, function(e) {
+
+        let button     = jQuery(this).attr('id');
+        let tabContent = jQuery(this).parent();
+        let tabConId   = jQuery(tabContent).attr('id');
+        
+        wp.media.editor.send.attachment = function(props, attachment){
+
+            let galleryContainer = jQuery(tabContent).find('#wodgcTabImgShow');
+
+            galleryContainer.append(`<span class="tab-img" id="imgAttchId_${attachment.id}" ><span class="tab-img-remove" onclick="removeTabImg('${tabConId}', ${attachment.id})" >×</span> <img src="${attachment.url}" style="max-height:100px;" /></span>`);
+
+            /*
+                jQuery(tabContent).find('#wodgcTabImgShow').html(`<span class="tab-img" id="imgAttchId_${attachment.id}" ><span class="tab-img-remove" onclick="removeTabImg('${tabConId}', ${attachment.id})" >×</span> <img src="${attachment.url}" style="max-height:100px;" /></span>`);
+            */
+            
+        }
+
+        wp.media.editor.open(button, {
+            multiple: true // Enable multiple image selection
+        })
+        return false;
+    });
+}
+wodgc_tab_img_upload('.wodgc-tab-img-upload-btn'); 
+
+});
+
+
+</script>
+<?php 
+}
