@@ -367,7 +367,7 @@ function add_entries_data_to_my_account_orders( $order ) {
     ) );
 
 
-
+// translation text
 add_filter( 'gettext', 'wpdocs_translate_text', 10, 3 );
 function wpdocs_translate_text( $translated_text, $untranslated_text, $domain ) {
 
@@ -626,6 +626,30 @@ wodgc_tab_img_upload('.wodgc-tab-img-upload-btn');
 
 });
 
+// validation email
+function isEmail(email) {
+    let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+
+}
+
+let required = jQuery(this).attr("required");
+let value = jQuery(this).val().trim(); 
+if(required && !value){
+    progress = false;
+    let label = jQuery(this).parent().find("label").text().replace('*','').replace(':','');
+    jQuery("div#"+uid+" .message_area").append(`<p class="error">${label} is required.</p>`);
+    return false;
+}
+
+let emailtyp = jQuery(this).attr("type");
+if (emailtyp == "email" && value) {
+    if(!isEmail(value)) {
+        progress = false;
+        let label = jQuery(this).parent().find("label").text().replace('*','').replace(':','');
+        jQuery("div#"+uid+" .message_area").append(`<p class="error">${label} is must be valid.</p>`);
+    }
+}
 
 </script>
 <?php 
