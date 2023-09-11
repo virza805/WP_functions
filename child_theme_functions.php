@@ -526,7 +526,7 @@ function gtw_sms_send_corn_every_minit(){
 
 
 // custom table create and insert data
-// create database table name dealer_orders_address
+// create database table name dealer_orders_address // Register Database Table 
 function dealer_orders_address_save(){
     global $wpdb;
     $table_name = $wpdb->prefix.'dealer_orders_address';
@@ -535,10 +535,29 @@ function dealer_orders_address_save(){
         user_id BIGINT,
         order_id BIGINT,
         delivery_address VARCHAR(250),
+        add_edit_date_time DATETIME,
         PRIMARY KEY (id)
     );";
     require_once (ABSPATH."wp-admin/includes/upgrade.php");
     dbDelta($sql);
+
+    // Update Database Table
+    if(get_option("tpdm_version")!=VERSION){
+        $sql = "CREATE TABLE {$table_name} (
+            id INT NOT NULL AUTO_INCREMENT,
+            row_no INT(11),
+            col_no INT(11),
+            popup text CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+            popup_t6 text CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+            popup_t14 text CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+            user_id INT(11),
+            add_edit_date_time DATETIME,
+            
+            PRIMARY KEY (id)
+        );";
+        dbDelta($sql);
+        update_option("tpdm_version",VERSION);
+    }
 
 }
 // Hook the function to run when the theme is activated
@@ -654,3 +673,42 @@ if (emailtyp == "email" && value) {
 </script>
 <?php 
 }
+
+
+// 10 & 11 validation
+$value = trim($_POST['billing_kennitala']);
+$kt_length = strlen($value);
+if( $kt_length<10 || $kt_length>11 ){  
+    wc_add_notice(sprintf('Sláðu inn gilda kennitölu'), 'error');
+    $passed=false; // don't add the new product to the cart
+}
+
+
+
+// === >>>> Dashboard Left side menu <<<< === \\
+add_action("admin_menu", "wp_dashboard_tpdm_menu_reg");
+function wp_dashboard_tpdm_menu_reg() {
+    add_menu_page(
+        __('Popup Data Manage','tpdm'), // page title <?=__('','tpdm')?
+        __('Popup Data Manage','tpdm'), // menu title
+        'manage_options', // capability
+        'tpdm', // sluge
+        'popup_data_manage_fun', // function
+        'dashicons-welcome-widgets-menus', // plugins_url('/img/icon.png',__DIR__) // icon url
+        10
+    );
+
+    //add submenu 2
+    add_submenu_page(
+        'tpdm', // parent menu slug
+        __('CSV inportExport','tpdm'), // Page title
+        'CSV ImporExport', // Menu title
+        'manage_options',  // Capability
+        'emport_export', // sub menu slug
+        'tpdm_emport_export_db_fun' // sub meun funciton for page
+    );
+}
+
+
+
+
