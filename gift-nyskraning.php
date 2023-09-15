@@ -93,7 +93,75 @@ function gjafakort_from_fun($jekono){
                 margin-top: 20px;
             }
 
+
+			.btn-right-text {
+				font-size:11px !important;
+			}
+			/* Gjafakort From On */
+			form#gift-card-form {
+				margin: 5% auto;
+				padding: 50px;
+				border: 1px solid #ddd;
+				border-radius: 10px;
+				box-shadow: 0px 6px 12px #ddd;
+				text-align: left;
+			}
+
+			form#gift-card-form input {
+					margin-bottom: 16px;
+					background: #e8e4e4 !important;
+			}
+			form#gift-card-form input#card_email {
+				width: 100%;
+			}
+
+			.btn-form input#card_submit {
+				background-color: #000000!important;
+				font-size: 18px;
+				margin-top: 20px;
+				color: #fff;
+			}
+
+			.btn-form input#card_submit:hover {
+			background-color: #ec1a3b !important;
+			}
+
+			#gift-card-form label {
+					color: black;
+					font-size: 16px;
+			}
+
+			.btn_loding{
+				animation: rotetSpin 3s linear infinite;
+				display: inline-block;
+				font-size: 18px;
+				line-height: 0;
+			}
+
+			@keyframes rotetSpin {
+				0%{
+					transform: rotate(0deg);
+				}
+				100%{
+					transform: rotate(360deg);
+				}
+			}
+
+			/* Gjafakort From Off */
+			/* @media only screen and (min-width:992px){ 
+			form#gift-card-form {
+					width: 600px;
+				}
+				
+			} */
+
+
+
+
 			@media only screen and (min-width:992px){ 
+				form#gift-card-form {
+					width: 700px;
+				}
 
 				.btn-text-wrap {
 					display: flex;
@@ -246,7 +314,7 @@ function gtw_update_card_information($name,$phone,$email,$card,$subscribe){
 		if($body){
 			$body = json_decode($body,true);
 			//print_r($body);
-			if(isset($body["success"])){
+			if(isset($body["success"]) && $body["success"]==true){
 				// update pass details card details
 				if($subscribe) mailchimp_subscription($name,$email);
 				return ['status'=>1,'url'=>$body['result']['pass_link']];

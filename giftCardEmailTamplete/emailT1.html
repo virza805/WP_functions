@@ -10,8 +10,6 @@
 <body>
     <h2 style="text-align: center;">Gift for You</h2>
     <style>
-        /* What it does: Remove spaces around the email design added by some email clients. */
-        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
         html,
         body {
             margin: 0 auto !important;
@@ -41,8 +39,6 @@
             mso-table-lspace: 0pt !important;
             mso-table-rspace: 0pt !important;
         }
-
-        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
         table {
             border-spacing: 0 !important;
             border-collapse: collapse !important;
@@ -53,8 +49,7 @@
         table table table {
             table-layout: auto;
         }
-
-        /* What it does: Uses a better rendering method when resizing images in IE. */
+        
         img {
             -ms-interpolation-mode: bicubic;
             width: 100%;
