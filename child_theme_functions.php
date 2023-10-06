@@ -719,4 +719,15 @@ function remove_admin_bar() {
 
 
 
+// only for admin | payment | https://wordpress.org/plugins/woocommerce-other-payment-gateway/
+    add_action('woocommerce_checkout_order_processed','check_if_order_processed_by_admin',10,1);
+    function check_if_order_processed_by_admin($order_id){
+        if(current_user_can('administrator')){
+            $order = wc_get_order( $order_id );
+            if($order->get_payment_method()==='other_payment'){
+                gtw_item_order_payment_complete( $order_id );
+            }
+        }
+    
+    }
 
