@@ -652,22 +652,71 @@ function isEmail(email) {
 
 }
 
-let required = jQuery(this).attr("required");
-let value = jQuery(this).val().trim(); 
-if(required && !value){
-    progress = false;
-    let label = jQuery(this).parent().find("label").text().replace('*','').replace(':','');
-    jQuery("div#"+uid+" .message_area").append(`<p class="error">${label} is required.</p>`);
-    return false;
+// email and phone number validation
+
+function emailOk($email) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailReg.test( $email );
 }
 
-let emailtyp = jQuery(this).attr("type");
-if (emailtyp == "email" && value) {
-    if(!isEmail(value)) {
-        progress = false;
-        let label = jQuery(this).parent().find("label").text().replace('*','').replace(':','');
-        jQuery("div#"+uid+" .message_area").append(`<p class="error">${label} is must be valid.</p>`);
+// Form submit function onclick='userLoginFormSubmit()'
+function userLoginFormSubmit() {
+    let user_phone = jQuery('input[name=user_phone]').val().trim();
+    let user_email=jQuery('input[name=user_email]').val().trim();
+    
+    jQuery('.error').remove(); // Reset any previous error messages
+
+    // validation 
+    let isValid = true;
+
+    if(!user_email){
+        jQuery('input[name=user_email]').css('border','1px solid red');
+        jQuery('input[name=user_email]').focus();
+        jQuery('input[name=user_email]').after(`<p class='error'>Sláðu inn netfangið þitt</p>`);
+        isValid = false;
+    }else{
+        if(!emailOk(user_email) && user_email){
+            jQuery('input[name=user_email]').css('border','1px solid red');
+            jQuery('input[name=user_email]').focus();
+            jQuery('input[name=user_email]').after(`<p class='error'>Sláðu inn netfangið þitt</p>`);
+            isValid = false;
+        }else{
+            jQuery('input[name=user_email]').css('border','0px solid red');
+            jQuery('input[name=user_email]').after(` `);
+            
+        }
+        
     }
+
+    
+
+    if(!user_phone){
+        jQuery('input[name=user_phone]').css('border','1px solid red');
+        jQuery('input[name=user_phone]').focus();
+        jQuery('input[name=user_phone]').after(`<p class='error'>Sláðu inn farsímanúmer</p>`);
+        isValid = false;
+    }else{
+        if(user_phone.length!=7 && user_phone){
+            jQuery('input[name=user_phone]').css('border','1px solid red');
+            jQuery('input[name=user_phone]').focus();
+            jQuery('input[name=user_phone]').after(`<p class='error'>Sláðu inn farsímanúmer</p>`);
+            isValid = false;
+        }else{
+            jQuery('input[name=user_phone]').css('border','0px solid red');
+            jQuery('input[name=user_phone]').after(` `);
+            
+        }
+        
+    }
+
+   
+
+
+    if(isValid){
+        // ajax call 
+    }
+
+
 }
 
 </script>
@@ -730,4 +779,30 @@ function remove_admin_bar() {
         }
     
     }
+
+/**
+* Add a login/logout shortcode button
+*/
+add_shortcode( 'login_logout', 'wooxperto_login_logout_shortcode_callback' );
+function wooxperto_login_logout_shortcode_callback() {
+    ob_start();
+    if (is_user_logged_in()) :
+        
+    ?>
+        <a role="button" href="<?php echo wp_logout_url('/login-user/'); ?>" class="log-out-user">Log Out</a>
+
+        <?php
+        else :
+        ?>
+        <!-- <a role="button" href="<?php // echo wp_login_url(get_permalink()); ?>">Innskráning</span></a> -->
+        <a role="button" href="/login-user/" class="log-in-user">Innskráning</span></a>
+
+    <?php
+    endif;
+
+return ob_get_clean();
+}
+
+
+
 
