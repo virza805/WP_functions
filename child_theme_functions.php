@@ -804,5 +804,25 @@ return ob_get_clean();
 }
 
 
+function show_subcat_by_id($id){
+	// $term = get_queried_object();
+
+	$subcats = get_terms(array(
+		'taxonomy' => 'product_cat',
+		'parent' => $id,
+		// 'child_of' => $term->term_id,
+		'hide_empty' => true,
+		'orderby' => 'name',
+		'order' => 'ASC'
+	));
+	$listHtml = '';
+	foreach ($subcats as $catItem) {
+		$listHtml .= '<li><a href="' . get_term_link($catItem) . '">' . $catItem->name . '</a></li>';
+
+	}
+	$html = '<ul>'.$listHtml.'</ul>';
+	return $html;
+
+}
 
 
