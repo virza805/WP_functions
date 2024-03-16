@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Scanner</title>
+<style>
+    .skew-x-shake-animation {
+        animation: skew-x-shake 2s infinite;
+    }
+    @keyframes skew-x-shake {
+        0% {
+            -webkit-transform: translate(2px, 1px) rotate(0deg);
+        }
+
+        10% {
+            -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+        }
+
+        20% {
+            -webkit-transform: translate(-3px, 0px) rotate(1deg);
+        }
+
+        30% {
+            -webkit-transform: translate(0px, 2px) rotate(0deg);
+        }
+
+        40% {
+            -webkit-transform: translate(1px, -1px) rotate(1deg);
+        }
+
+        50% {
+            -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+        }
+
+        60% {
+            -webkit-transform: translate(-3px, 1px) rotate(0deg);
+        }
+
+        70% {
+            -webkit-transform: translate(2px, 1px) rotate(-1deg);
+        }
+
+        80% {
+            -webkit-transform: translate(-1px, -1px) rotate(1deg);
+        }
+
+        90% {
+            -webkit-transform: translate(2px, 2px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(1px, -2px) rotate(-1deg);
+        }
+    }
+
+    @keyframes rotate {
+        100% {
+            transform: rotate(1turn);
+        }
+    }
+
+    .rainbow {
+  position: relative;
+  z-index: 0;
+  width: 400px;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-weight: bold;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    background-color: #399953;
+    background-repeat: no-repeat;
+    background-size: 50% 50%, 50% 50%;
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    background-image: linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300), linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
+    animation: rotate 4s linear infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 6px;
+    top: 6px;
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+    background: white;
+    border-radius: 5px;
+  }
+}
+
+
+</style>
+
+</head>
+<body>
+
+    <h2>I hope it will help you. Thank you. <a target="_blank" href="https://www.programmingquest.com/2023/03/qr-scanner-using-javascript-and-jsqr.html">QR Scanner Using JavaScript and jsQR Library</a></h2> 
+
+    <form id="gift-card-form" action="" method="POST">
+        <input type="text" name="card_name" id="card_name" value="" placeholder="Nafn *" required=""><br>
+        <input type="text" name="card_phone" id="card_phone" value="" placeholder="Símanúmer *" required="" maxlength="7" minlength="7"><br>
+        <input type="email" name="card_email" id="card_email" value="" placeholder="Netfang *" required=""><br>
+        <input type="text" name="cardnumber" id="cardnumber" value="" placeholder="Númer gjafakorts xxxxxxxx *" required=""><br>
+        <label>
+            <input type="checkbox" name="subscrib_to_mail_list"> Ég hef áhuga á að skrá mig á póstlista Kringlunnar.
+        </label>
+        <div class="btn-text-wrap">
+            <div class="btn-form">
+                <input type="submit" name="card_submit" id="card_submit" value="Staðfesta" style="padding-left:28px;">
+            </div>
+            <div class="btn-right-text">
+                <p>Athugaðu að þótt gjafakortið hafi verið sett í veskið í símann þá er QR-og strikamerki enn virkt á útprentaða gjafakortinu.
+                Passa skal því upp á að farga því eða geyma á vísum stað.</p>
+            </div>
+        </div>
+    </form>
+
+    <video id="video" width="300" height="200"  style="display: none;"></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <div id="output"></div>
+    <button id="startButton" class="skew-x-shake-animation rainbow">Start Scanner</button>
+    <button id="stopButton" style="display: none;">Stop Scanner</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const outputDiv = document.getElementById('output');
+        const cardNo = document.getElementById('cardnumber');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const constraints = { video: { facingMode: 'environment' } };
+        let isScanning = false;
+        let stream = null;
+
+        function startScanner() {
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function (str) {
+                    video.style.display = "block";
+                    stream = str;
+                    video.srcObject = stream;
+                    video.setAttribute('playsinline', true);
+                    video.play();
+                    requestAnimationFrame(tick);
+                    isScanning = true;
+                    startButton.style.display = 'none';
+                    stopButton.style.display = 'inline';
+                    cardNo.value = '';
+                    outputDiv.innerHTML = ''; // Clear previous results
+                })
+                .catch(function(error) {
+                    console.error(error);
+                });
+        }
+
+        function stopScanner() {
+            if (stream) {
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+            }
+            isScanning = false;
+            startButton.style.display = 'inline';
+            stopButton.style.display = 'none';
+            video.setAttribute('playsinline', false);
+            video.style.display = "none";
+            // outputDiv.innerHTML = ''; // Clear previous results
+        }
+
+        function tick() {
+            if (isScanning && video.readyState === video.HAVE_ENOUGH_DATA) {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const code = jsQR(imageData.data, imageData.width, imageData.height);
+                if (code) {
+                    outputDiv.innerHTML = code.data;
+
+                    cardNo.value = code.data;
+                    stopScanner(); // Stop scanning after a successful scan
+                    // isScanning = false;
+                    // startButton.disabled = false;
+                }
+            }
+            if (isScanning) {
+                requestAnimationFrame(tick);
+            }
+        }
+
+        startButton.addEventListener('click', startScanner);
+        stopButton.addEventListener('click', stopScanner);
+
+    </script>
+
+</body>
+</html>

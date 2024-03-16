@@ -1,0 +1,56 @@
+{
+	// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	},
+	"Print to wpAjaxCall": {
+		"prefix": "wpAjaxCall",
+		"body": [
+			"// Form submit function onclick='formSubmit()'",
+		  "function formSubmit() {",
+		  "let emailId = jQuery(input[type='email']).val();",
+		  "let userName = jQuery(input[type='text']).val();",
+
+			"// WP Ajax Call with submit function",
+			"jQuery('#sms').html(`<b>Wait..</b> <span class='loding'><img src='<?php echo plugin_dir_url(__FILE__); ?>img/spin.png' alt='loading...' ></span>`);",
+			"// jQuery.post('<?=admin_url( 'admin-ajax.php' )?>',data,function(result){$2});",
+			"jQuery.ajax({",
+			"  type: 'POST',",
+			"  dataType: 'json',",
+			"  url: '<?php echo admin_url('admin-ajax.php')?>',",
+			"  data: {",
+			"    action: 'get_data',",
+			"    email: emailId,",
+			"    name: userName",
+			"  },",
+			"  success: function(response) { if ( ! response || response.error ) return;",
+				"jQuery('#sms').html(` `);",
+				" if (response.status == 'ok') { jQuery('#sms').html(`DOLARS{response.sms}`);",
+				"} else { ",
+				" jQuery('#sms').html(`<p class='error'>Some problam</p>`);",
+				"}",
+				" $1 ",
+			"   }",
+			"});",
+		  "}"
+		],
+		"description": "ajax call with formSubmit function"
+	}
+}
